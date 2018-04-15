@@ -10,8 +10,10 @@ import com.github.kevinsawicki.http.HttpRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-
-public class TornCollector {
+/**
+ * create and call API request
+ */
+public class TornRequest {
 
     /**
      * environment variable name that contain torn api
@@ -22,7 +24,7 @@ public class TornCollector {
 
     private String userAgent = null;
 
-    public TornCollector(){}
+    public TornRequest(){}
 
     public void setUserAgent(String userAgent){
         this.userAgent = userAgent;
@@ -37,7 +39,7 @@ public class TornCollector {
      * @param id
      * @return json
      */
-    public String collectUserByID(String id){
+    public String requestUserByID(String id){
         String torn_api_key = System.getenv(ENV_TORN_API);
         // https://api.torn.com/user/2096019?key=your_api_key
         String url = "https://api.torn.com/user";
