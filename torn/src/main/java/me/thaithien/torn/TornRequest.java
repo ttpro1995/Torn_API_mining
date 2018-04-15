@@ -47,7 +47,7 @@ public class TornRequest {
         String result = null;
         try {
 
-            String query = String.format("/user/%s?key=%s",
+            String query = String.format("/%s?key=%s",
                     URLEncoder.encode(id, charset),
                     URLEncoder.encode(torn_api_key, charset));
 

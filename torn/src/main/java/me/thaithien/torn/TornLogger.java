@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public class TornLogger {
 
     private TornRequest tornRequest;
-    private Logger logger = LoggerFactory.getLogger(MainApp.class);
+    private Logger logger = LoggerFactory.getLogger(TornLogger.class);
     private List<String> watchList = null;
     protected String userWatchlistDir = null;
 
@@ -43,6 +43,8 @@ public class TornLogger {
         {
             userWatchlistDir = "watchlist/user.txt"; //default value
         }
+
+        userWatchList = getWatchListFromFile(userWatchlistDir);
     }
 
     /**
@@ -68,10 +70,9 @@ public class TornLogger {
      * @param userId
      * @return
      */
-    public String getUserById(String userId){
+    public void getUserById(String userId){
         String result = tornRequest.requestUserByID(userId);
         logger.info(result);
-        return result;
     }
 
     /**
@@ -79,6 +80,9 @@ public class TornLogger {
      */
     public void getUser(){
 
+        for (String id : this.userWatchList){
+            getUserById(id);
+        }
     }
 
 
