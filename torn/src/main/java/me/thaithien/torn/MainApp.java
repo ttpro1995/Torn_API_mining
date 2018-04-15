@@ -5,8 +5,6 @@
  */
 package me.thaithien.torn;
 
-import java.io.IOException;
-import java.util.Collections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,12 +12,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author thaithien
  */
-public class Meow {
+public class MainApp {
 
 
 
     public static void main(String[] args)  {
-        Logger logger = LoggerFactory.getLogger(Meow.class);
+        Logger logger = LoggerFactory.getLogger(MainApp.class);
         logger.info("Hello World");
     }
 
