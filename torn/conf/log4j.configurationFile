@@ -5,15 +5,23 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS}{GMT} === [%t] %-5level === %logger{36} === %msg%n" />
         </Console>
-        <File name="MyFile" fileName="logs/Torn.log" immediateFlush="true" append="true">
+        <!--<File name="MyFile" fileName="logs/Torn.log" immediateFlush="true" append="true">-->
+            <!--<PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS}{GMT} === [%t] %-5level === %logger{36} === %msg%n"/>-->
+        <!--</File>-->
+        <RollingFile name="DAILY_LOG"
+                     filePattern="logs/%d{ddMMyyyy}_daily_torn.log">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS}{GMT} === [%t] %-5level === %logger{36} === %msg%n"/>
-        </File>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+        </RollingFile>
+
     </Appenders>
 
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console" />
-            <AppenderRef ref="MyFile"/>
+            <AppenderRef ref="DAILY_LOG"/>
         </Root>
     </Loggers>
 
