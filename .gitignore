@@ -86,3 +86,7 @@ buildNumber.properties
 torn/\.idea/
 
 *.log
+
+torndataplatform/\.idea/
+
+*.iml
