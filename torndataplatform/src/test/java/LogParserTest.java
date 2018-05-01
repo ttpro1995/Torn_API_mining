@@ -20,4 +20,12 @@ public class LogParserTest {
         String expected = builder.toString();
         assertEquals(expected, result);
     }
+
+
+    @Test
+    public void parseLog() {
+        String inputFile = "testdata/19042018_daily_torn.log";
+        String outputFile = "testdata/19042018_daily_torn.csv";
+        LogParser.parseLog(inputFile, outputFile, LogParser::parseUserLastAction);
+    }
 }

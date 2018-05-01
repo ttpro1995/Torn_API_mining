@@ -1,6 +1,14 @@
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.StringJoiner;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 
 public class LogParser {
@@ -40,4 +48,31 @@ public class LogParser {
 
         return result;
     }
+
+    /**
+     * actually run and parse a log file
+     * @param logFileName
+     * @param outputFileName
+     * @param parseMethod the static method from LogParser (i.e: parseUserLastAction)
+     */
+    public static void parseLog(String logFileName, String outputFileName, Function<String, String> parseMethod){
+        //read file into stream, try-with-resources
+
+        try {
+            Stream<String> stream = Files.lines(Paths.get(logFileName));
+            FileWriter fw = new FileWriter(outputFileName);
+            stream.map(parseMethod).forEach(x -> {
+                try{
+                    fw.write(x+"\n");
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            });
+            fw.flush();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
